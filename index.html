@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthcare Chatbot</title>
+    <title>Fact Display</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,92 +15,77 @@
             margin: 0;
         }
 
-        .chat-container {
+        .fact-container {
             background: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-box {
             padding: 20px;
-            height: 300px;
-            overflow-y: auto;
-            border-bottom: 1px solid #ddd;
+            width: 300px;
+            text-align: center;
         }
 
-        .message {
+        .fact {
+            font-size: 18px;
             margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
         }
 
-        .bot-message {
-            background-color: #e1f5fe;
-            text-align: left;
-        }
-
-        .user-message {
-            background-color: #c8e6c9;
-            text-align: right;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            border: none;
-            border-top: 1px solid #ddd;
-            width: calc(100% - 80px);
-        }
-
-        button {
-            padding: 10px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
+        .fact-number {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <div class="message bot-message">Hello! How can I assist you today?</div>
-        </div>
-        <input type="text" id="user-input" placeholder="Type your message here..." />
-        <button id="send-button">Send</button>
+    <div class="fact-container">
+        <div class="fact" id="fact-display"></div>
     </div>
     <script>
-        document.getElementById('send-button').addEventListener('click', function() {
-            const userInput = document.getElementById('user-input');
-            const userMessage = userInput.value;
-
-            if (userMessage.trim() !== "") {
-                addMessage(userMessage, 'user-message');
-                userInput.value = '';
-                
-                // Simulate bot response
-                setTimeout(() => {
-                    addMessage("I'm sorry, I can't help with that right now.", 'bot-message');
-                }, 1000);
+        const facts = [
+            {
+                "fact": "1",
+                "description": "The universe is approximately 13.8 billion years old."
+            },
+            {
+                "fact": "2",
+                "description": "There are more stars in the universe than grains of sand on all the Earth's beaches."
+            },
+            {
+                "fact": "3",
+                "description": "A day on Venus is longer than a year on Venus."
+            },
+            {
+                "fact": "4",
+                "description": "Neutron stars are so dense that a sugar-cube-sized amount of material from one would weigh about as much as all of humanity."
+            },
+            {
+                "fact": "5",
+                "description": "The Milky Way galaxy is on a collision course with the Andromeda galaxy."
+            },
+            {
+                "fact": "6",
+                "description": "There are more than 200 billion galaxies in the observable universe."
+            },
+            {
+                "fact": "7",
+                "description": "Black holes are regions in space where the gravitational pull is so strong that nothing, not even light, can escape from them."
+            },
+            {
+                "fact": "8",
+                "description": "The footprints left by astronauts on the Moon will remain there for millions of years because there is no wind or water to erode them."
+            },
+            {
+                "fact": "9",
+                "description": "One million Earths could fit inside the Sun."
+            },
+            {
+                "fact": "10",
+                "description": "The observable universe is about 93 billion light-years in diameter."
             }
-        });
+        ];
 
-        function addMessage(message, className) {
-            const chatBox = document.getElementById('chat-box');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${className}`;
-            messageDiv.textContent = message;
-            chatBox.appendChild(messageDiv);
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
-        }
+        // Display a specific fact (change the index to show a different fact)
+        const factIndex = 0; // Change this index to display a different fact
+        const factDisplay = document.getElementById('fact-display');
+        factDisplay.innerHTML = `<span class="fact-number">${facts[factIndex].fact}</span>: ${facts[factIndex].description}`;
     </script>
 </body>
 </html>
-
